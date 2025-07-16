@@ -1,9 +1,12 @@
 const express = require('express');
+const connectToDatabase = require('./src/database/database');
 const app = express();
 
 const PORT = 3001;
 
 app.use(express.json());
+
+connectToDatabase();
 
 app.get('/', (req, res) => {
     res.send({
