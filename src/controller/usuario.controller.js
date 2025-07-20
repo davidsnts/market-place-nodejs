@@ -9,7 +9,7 @@ const findUserByIdController = async (req, res) => {
 
 const findAllUsersController = async (req, res) => {
     try {
-
+        
     } catch (err) {
         console.log(`Erro: ${err.message}`);
         return res.status(500).send({ "msg": `Erro inesperado ao buscar usuários, tente novamente!` });
