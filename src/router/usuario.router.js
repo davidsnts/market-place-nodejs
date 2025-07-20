@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const usuarioController = require('../controller/usuario.controller');
 
-
 //rotas GET
 router.get('/findById/:id', usuarioController.findUserByIdController);
 
@@ -16,8 +15,7 @@ router.post('/addAdress/:id', usuarioController.AddUserAdressController);
 
 router.post('/removeAdress/:id', usuarioController.RemoveUserAdressController);
 
-router.post('/addFavProduct/:id', usuarioController.AddUserFavController);
-
+router.post('/addFavProduct/:id', usuarioController.AddUserFavProductController);
 
 //rotas put
 router.put('/update/:id', usuarioController.UpdateUserController);
@@ -27,7 +25,7 @@ router.delete('/remove/:id', usuarioController.RemoveUserController);
 
 router.delete('/removeAdress', usuarioController.RemoveUserAdressController);
 
-router.delete('/removeProduct', usuarioController.RemoveUserFavController);
+router.delete('/removeProduct', usuarioController.RemoveUserFavProductController);
 
 module.exports = router;
 

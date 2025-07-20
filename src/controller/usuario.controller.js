@@ -9,7 +9,7 @@ const findUserByIdController = async (req, res) => {
 
 const findAllUsersController = async (req, res) => {
     try {
-        
+
     } catch (err) {
         console.log(`Erro: ${err.message}`);
         return res.status(500).send({ "msg": `Erro inesperado ao buscar usuários, tente novamente!` });
@@ -61,7 +61,7 @@ const RemoveUserAdressController = async (req, res) => {
     }
 };
 
-const AddUserFavController = async (req, res) => {
+const AddUserFavProductController = async (req, res) => {
     try {
 
     } catch (err) {
@@ -70,7 +70,7 @@ const AddUserFavController = async (req, res) => {
     }
 };
 
-const RemoveUserFavController = async (req, res) => {
+const RemoveUserFavProductController = async (req, res) => {
     try {
 
     } catch (err) {
@@ -91,6 +91,6 @@ module.exports = {
     RemoveUserController,
     AddUserAdressController,
     RemoveUserAdressController,
-    AddUserFavController,
-    RemoveUserFavController
+    AddUserFavProductController,
+    RemoveUserFavProductController
 }
