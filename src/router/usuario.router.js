@@ -2,46 +2,25 @@ const express = require("express");
 const router = express.Router();
 const usuarioController = require('../controller/usuario.controller');
 
-router.get('/findById/:id', (req, res) => {
+router.get('/findById/:id', usuarioController.findUserByIdController);
 
-});
+router.get('/findAll', usuarioController.findAllUsersController);
 
-router.get('/findAll', (req, res) => {
+router.post('/create', usuarioController.CreateUserController);
 
-});
+router.post('/addAdress/:id', usuarioController.AddUserAdressController);
 
-router.post('/create', (req, res) => {
+router.post('/removeAdress/:id', usuarioController.RemoveUserAdressController);
 
-});
+router.post('/addFavProduct/:id', usuarioController.AddUserFavController);
 
-router.post('/addAdress/:id', (req, res) => {
+router.put('/update/:id', usuarioController.UpdateUserController);
 
-});
+router.delete('/remove/:id', usuarioController.RemoveUserController);
 
-router.post('/addAdress/:id', (req, res) => {
+router.delete('/removeAdress', usuarioController.RemoveUserAdressController);
 
-});
-
-router.post('/addFavProduct/:id', (req, res) => {
-
-});
-
-router.put('/update/:id', (req, res) => {
-
-});
-
-router.delete('/remove/:id', (req, res) => {
-
-});
-
-
-router.delete('/removeAdress', (req, res) => {
-
-});
-
-router.delete('/removeProduct', (req, res) => {
-
-});
+router.delete('/removeProduct', usuarioController.RemoveUserFavController);
 
 module.exports = router;
 
