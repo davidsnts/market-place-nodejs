@@ -48,8 +48,9 @@ const UpdateUserController = async (req, res) => {
     try {
         const body = req.body;
         const id = req.params.id;
-        console.log(id);
-        
+        if (!id) {
+            return res.status(400).send({ "msg": "O ID do usuário é obrigatório." });
+        }
         if (!body.nome) {
             return res.status(400).send({ "msg": "O campo nome é obrigatório." })
         }
