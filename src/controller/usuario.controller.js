@@ -66,11 +66,11 @@ const UpdateUserController = async (req, res) => {
 const RemoveUserController = async (req, res) => {
     try {
         const deletedUser = await userService.RemoveUserService(req.params.id);
-                
+
         if (deletedUser)
             return res.status(200).send({ "msg": `Usuário deletado!` });
         else
-           return res.status(404).send({ "msg": `Usuário não encontrado!` });
+            return res.status(404).send({ "msg": `Usuário não encontrado!` });
 
     } catch (err) {
         console.log(`Erro: ${err.message}`);
@@ -80,6 +80,26 @@ const RemoveUserController = async (req, res) => {
 
 const AddUserAdressController = async (req, res) => {
     try {
+        const id = req.params.id;
+        const endereco = req.body;
+
+        if (!id) {
+            return res.status(400).send({ "msg": "O ID do usuário é obrigatório." });
+        }
+
+        if (!endereco.rua || !endereco.numero || !endereco.CEP) {
+            return res.status(400).send({ "msg": "Todos os campos de endereço são obrigatórios." });
+        }
+
+        const enderecoMongo = await userService.AddUserAdressService(id, endereco);
+        console.log(enderecoMongo);
+
+        if (enderecoMongo) {
+            return res.status(200).send({ "msg": `Endereço adicionado com sucesso!` });
+        } else {
+            return res.status(400).send({ "msg": `Erro ao adicionar o endereço` });
+        }
+
 
     } catch (err) {
         console.log(`Erro: ${err.message}`);
@@ -89,6 +109,23 @@ const AddUserAdressController = async (req, res) => {
 
 const RemoveUserAdressController = async (req, res) => {
     try {
+        const id = req.params.id;
+        const endereco = req.body.adressId;
+
+        if (!id) {
+            return res.status(400).send({ "msg": "O ID do usuário é obrigatório." });
+        }
+
+        if (!endereco) {
+            return res.status(400).send({ "msg": "O ID do endereço é obrigatório." });
+        }
+        const enderecoMongo = await userService.RemoveUserAdressService(id, endereco);
+        
+        if (enderecoMongo) {
+            return res.status(200).send({ "msg": `Endereço removido com sucesso!` });
+        } else {
+            return res.status(400).send({ "msg": `Erro ao remover o endereço` });
+        }
 
     } catch (err) {
         console.log(`Erro: ${err.message}`);

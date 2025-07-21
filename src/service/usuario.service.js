@@ -21,11 +21,19 @@ const RemoveUserService = (id) => {
 }
 
 const AddUserAdressService = (id, endereco) => {
-    
+    console.log(endereco);
+
+    return Usuario.findOneAndUpdate(
+        { _id: id }, { $push: { enderecos: endereco } }, { rawResult: true }
+    )
 }
 
-const RemoveUserAdressService = (id) => {
+const RemoveUserAdressService = (id, adressId) => {
+    console.log(adressId);
 
+    return Usuario.findOneAndUpdate(
+        { _id: id }, { $pull: { enderecos: { _id: adressId } } }, { rawResult: true }
+    )
 }
 
 const AddUserFavProdcutService = (id, produto) => {
