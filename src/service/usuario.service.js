@@ -8,8 +8,16 @@ const findAllUsersService = () => {
     return Usuario.find();
 }
 
-const CreateUserService = (body) => {
-    return Usuario.create(body);
+const CreateUserService = async (body) => {   
+     try {        
+        const novoUsuario = await Usuario.create(body);
+        return novoUsuario;
+    } catch (error) {        
+        if (error.code === 11000 && error.keyPattern?.email) {
+            throw new Error("Email já está em uso.");
+        }        
+        throw error;
+    }
 }
 
 const UpdateUserService = (id, body) => {
