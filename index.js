@@ -3,6 +3,8 @@ const connectToDatabase = require('./src/database/database'); //arquivo de conex
 
 const app = express();
 const usuario = require('./src/router/usuario.router'); //arquivo de rota do usuário
+const auth = require('./src/router/auth.router'); //arquivo de rota do usuário
+
 
 const PORT = 3001;
 
@@ -11,6 +13,7 @@ app.use(express.json());
 connectToDatabase(); //Conctando com o banco
 
 app.use("/usuario", usuario); //Chamando rotas usuário
+app.use("/auth", auth); //Chamando rotas de login
 
 app.get('/', (req, res) => {
     res.send({
