@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
         return res.status(401).json({ message: 'Token mal formatado' });
     }
 
-    jwt.verify(token, "$2a$12$Fi4CgF329prNsU3ppQfbt.IgDucgWVz5xZMGaWLaGKiM2GxDY9xEW", async (err, decoded) => {
+    jwt.verify(token, process.env.SECRET, async (err, decoded) => {
         if(err) {
             console.log(err);
             
