@@ -36,7 +36,11 @@ const CreateUserController = async (req, res) => {
         if (!body.nome) {
             return res.status(400).send({ "msg": "O campo nome é obrigatório." })
         }
-        res.status(201).send(await userService.CreateUserService(body));
+
+        const user = await userService.CreateUserService(body)
+        if(user) {
+            return res.status(201).send({ "msg": `Usuário criado com sucesso!` });
+        }
 
     } catch (err) {
         console.log(`Erro: ${err.message}`);
