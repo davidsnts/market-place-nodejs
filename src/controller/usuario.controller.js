@@ -82,6 +82,7 @@ const AddUserAdressController = async (req, res) => {
     try {
         const id = req.params.id;
         const endereco = req.body;
+        endereco.createdAt = new Date();
 
         if (!id) {
             return res.status(400).send({ "msg": "O ID do usuário é obrigatório." });
@@ -110,18 +111,28 @@ const AddUserAdressController = async (req, res) => {
 const RemoveUserAdressController = async (req, res) => {
     try {
         const id = req.params.id;
-        const endereco = req.body.adressId;
-
         if (!id) {
             return res.status(400).send({ "msg": "O ID do usuário é obrigatório." });
         }
 
-        if (!endereco) {
-            return res.status(400).send({ "msg": "O ID do endereço é obrigatório." });
-        }
+        const endereco = req.body.adressId;
+        let found = false;       
+
         const enderecoMongo = await userService.RemoveUserAdressService(id, endereco);
         
-        if (enderecoMongo) {
+        
+        const {enderecos} = enderecoMongo;
+        
+        enderecos.forEach(e => {
+            if (e._id.toString() === endereco) {
+                found = true;
+            }
+        });
+
+        console.log(found);
+        
+
+        if (found) {
             return res.status(200).send({ "msg": `Endereço removido com sucesso!` });
         } else {
             return res.status(400).send({ "msg": `Erro ao remover o endereço` });

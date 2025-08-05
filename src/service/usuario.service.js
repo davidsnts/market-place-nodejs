@@ -29,8 +29,6 @@ const AddUserAdressService = (id, endereco) => {
 }
 
 const RemoveUserAdressService = (id, adressId) => {
-    console.log(adressId);
-
     return Usuario.findOneAndUpdate(
         { _id: id }, { $pull: { enderecos: { _id: adressId } } }, { rawResult: true }
     )
