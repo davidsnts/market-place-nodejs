@@ -1,6 +1,6 @@
 const carrinhoService = require('../service/carrinho.service');
 
-const findCarrinhoByIdController = async (req,res) => {
+const findCarrinhoByIdController = async (req, res) => {
     try {
         return res.status(200).send(await carrinhoService.findCarrinhoByIdService(req.params.id));
     } catch (err) {
@@ -8,7 +8,7 @@ const findCarrinhoByIdController = async (req,res) => {
     }
 }
 
-const findAllCarrinhosController = async (req,res) => {
+const findAllCarrinhosController = async (req, res) => {
     try {
         return res.status(200).send(await carrinhoService.findAllCarrinhosService());
     } catch (err) {
@@ -18,7 +18,10 @@ const findAllCarrinhosController = async (req,res) => {
 
 const createCarrinhoController = async (req, res) => {
     try {
-        const corpo = {...body, userId: req.userId, createdAt: new Date()};
+        const corpo = {
+            ...body,
+            userId: req.userId
+        };
         return res.status(201).send(await carrinhoService.createCarrinhoService(corpo));
     } catch (err) {
         return res.status(500).send({ error: 'Error create carrinho' });

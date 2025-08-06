@@ -8,7 +8,6 @@ const categoria = require('./src/router/categoria.router'); //arquivo de rota da
 const carrinho = require('./src/router/carrinho.router'); //arquivo de rota do carrinho
 const auth = require('./src/router/auth.router'); //arquivo de rota do usuário
 
-
 const PORT = 3001;
 
 app.use(express.json());

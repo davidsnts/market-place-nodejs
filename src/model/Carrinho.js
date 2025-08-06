@@ -7,7 +7,7 @@ const CarrinhoSchema = new mongoose.Schema({
             quantidade: { type: Number, required: true, default: 1 }
         },
     ],
-    createdAt: { type: Date, default: Date.now, required: true },
+    createdAt: { type: Date, required: true, default: Date.now },
     precoTotal: { type: Number, required: true },
     frete: { type: Number, required: true },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'usuarios', required: true },
