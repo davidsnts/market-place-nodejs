@@ -17,7 +17,7 @@ const findAllProductsService = () => {
 }
 const createProductService = (body) => {
     try {
-        const product = Produto.create(body);       
+        const product = Produto.create(body);
         return product;
     } catch (error) {
         throw new Error(`Error creating product: ${error.message}`);
@@ -48,10 +48,49 @@ const deleteProductService = (id) => {
     }
 }
 
+const addCategoriaProdutoService = async (id, categoria) => {
+    try {
+        return Produto.findOneAndUpdate(
+            { _id: id },
+            {
+                $push: {
+                    categoria: {
+                        _id: categoria._id,
+                        createdAt: new Date()
+                    }
+                }
+            },
+            { rawResult: true }
+        );
+    } catch (error) {
+        throw new Error(`Error adding category to product: ${error.message}`);
+    }
+};
+
+const removeCategoriaProdutoService = async (categoria) => {
+    try {
+        return Produto.findOneAndUpdate(
+            { _id: categoria._id },
+            {
+                $pull: {
+                    categoria: {
+                        _id: categoria._id
+
+                    }
+                }
+            },
+            { rawResult: true }
+        );
+    } catch (error) {
+        throw new Error(`Error removing category from product: ${error.message}`);
+    }
+};
 module.exports = {
     findProductByIdService,
     findAllProductsService,
     createProductService,
     updateProductService,
-    deleteProductService
+    deleteProductService,
+    addCategoriaProdutoService,
+    removeCategoriaProdutoService
 };
