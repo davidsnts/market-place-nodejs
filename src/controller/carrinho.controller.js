@@ -17,11 +17,13 @@ const findAllCarrinhosController = async (req, res) => {
 }
 
 const createCarrinhoController = async (req, res) => {
-    try {
+        try {
+        
         const corpo = {
-            ...body,
-            userId: req.userId
-        };
+            ...req.body,
+            userId: req.userid
+        };      
+        
         return res.status(201).send(await carrinhoService.createCarrinhoService(corpo));
     } catch (err) {
         return res.status(500).send({ error: 'Error create carrinho' });
@@ -29,7 +31,8 @@ const createCarrinhoController = async (req, res) => {
 }
 
 const updateCarrinhoController = async (req, res) => {
-    try {
+        
+    try {       
         return res.status(200).send(await carrinhoService.updateCarrinhoService(req.params.id, req.body));
     } catch (err) {
         return res.status(500).send({ error: 'Error update carrinho' });

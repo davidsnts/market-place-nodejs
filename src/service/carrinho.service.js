@@ -9,6 +9,8 @@ const findAllCarrinhosService = () => {
 }
 
 const createCarrinhoService = (body) => {
+    console.log(body);
+
     return Carrinho.create(body);
 }
 
