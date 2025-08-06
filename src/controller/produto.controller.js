@@ -5,19 +5,19 @@ const findProductByIdController = async (req, res) => {
         const { id } = req.params;
         const product = await produtoService.findProductByIdService(id);
         if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        } return res.status(200).json(product);
+            return res.status(404).send({ message: 'Product not found' });
+        } return res.status(200).send(product);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        return res.status(500).send({ message: error.message });
     }
 }
 
 const findAllProductsController = async (req, res) => {
     try {
         const products = await produtoService.findAllProductsService();
-        return res.status(200).json(products);
+        return res.status(200).send(products);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        return res.status(500).send({ message: error.message });
     }
 }
 
@@ -68,7 +68,7 @@ const addCategoriaProdutoController = async (req, res) => {
 
 const removeCategoriaProdutoController = async (req, res) => {
     try {
-        const categoria = await produtoService.removeCategoriaProdutoService(req.body);
+        const categoria = await produtoService.removeCategoriaProdutoService(req.params.id, req.body);
         return res.status(200).send(categoria);
     } catch (error) {
         return res.status(500).send({ message: error.message });

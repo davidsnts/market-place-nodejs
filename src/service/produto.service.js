@@ -54,7 +54,7 @@ const addCategoriaProdutoService = async (id, categoria) => {
             { _id: id },
             {
                 $push: {
-                    categoria: {
+                    categorias: {
                         _id: categoria._id,
                         createdAt: new Date()
                     }
@@ -67,13 +67,13 @@ const addCategoriaProdutoService = async (id, categoria) => {
     }
 };
 
-const removeCategoriaProdutoService = async (categoria) => {
+const removeCategoriaProdutoService = async (id, categoria) => {
     try {
         return Produto.findOneAndUpdate(
-            { _id: categoria._id },
+            { _id: id },
             {
                 $pull: {
-                    categoria: {
+                    categorias: {
                         _id: categoria._id
 
                     }
