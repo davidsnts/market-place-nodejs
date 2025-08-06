@@ -4,6 +4,7 @@ require('dotenv').config(); //variaveis de ambiente
 const app = express();
 const usuario = require('./src/router/usuario.router'); //arquivo de rota do usuário
 const produto = require('./src/router/produto.router'); //arquivo de rota do produto
+const categoria = require('./src/router/categoria.router'); //arquivo de rota da categoria
 const auth = require('./src/router/auth.router'); //arquivo de rota do usuário
 
 
@@ -15,6 +16,7 @@ connectToDatabase(); //Conctando com o banco
 
 app.use("/usuario", usuario); //Chamando rotas usuário
 app.use("/produto", produto); //Chamando rotas produto
+app.use("/categoria", categoria); //Chamando rotas categoria
 app.use("/auth", auth); //Chamando rotas de login
 
 app.get('/', (req, res) => {
