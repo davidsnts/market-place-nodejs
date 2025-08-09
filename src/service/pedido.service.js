@@ -16,7 +16,7 @@ const deletePedidoService = (id) => {
     return Pedido.findByIdAndDelete(id);
 }
 
-const updateStatusPedidoService = (id) => {
+const updateStatusPedidoService = (id) => { 
     return Pedido.findByIdAndUpdate({ _id: id }, { concluido: true });
 }
 
