@@ -150,7 +150,7 @@ const RemoveUserAdressController = async (req, res) => {
 
 const AddUserFavProductController = async (req, res) => {
     try {
-
+        return res.status(200).send(await userService.AddUserFavProdcutService(req.params.id, req.body));
     } catch (err) {
         console.log(`Erro: ${err.message}`);
         return res.status(500).send({ "msg": `Erro inesperado adicionar favorito, tente novamente!` });
@@ -159,7 +159,7 @@ const AddUserFavProductController = async (req, res) => {
 
 const RemoveUserFavProductController = async (req, res) => {
     try {
-
+        return res.status(200).send(await userService.RemoveUserFavProductService(req.params.id, req.body));
     } catch (err) {
         console.log(`Erro: ${err.message}`);
         return res.status(500).send({ "msg": `Erro inesperado remover favorito, tente novamente!` });

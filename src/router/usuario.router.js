@@ -26,7 +26,7 @@ router.delete('/remove/:id', usuarioController.RemoveUserController);
 
 router.delete('/removeAdress', usuarioController.RemoveUserAdressController);
 
-router.delete('/removeProduct', usuarioController.RemoveUserFavProductController);
+router.post('/removeProduct/:id', usuarioController.RemoveUserFavProductController);
 
 module.exports = router;
 
