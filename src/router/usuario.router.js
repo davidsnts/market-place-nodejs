@@ -2,31 +2,32 @@ const express = require("express");
 const router = express.Router();
 const usuarioController = require('../controller/usuario.controller');
 const authMiddleware = require('../middleware/auth.middleware');
+const { validaUsuario } = require('../middleware/validacao.middleware');
 
 //rotas GET
-router.get('/findById/:id',authMiddleware, usuarioController.findUserByIdController);
+router.get('/findById/:id', authMiddleware, usuarioController.findUserByIdController);
 
 router.get('/findAll', usuarioController.findAllUsersController);
 
 //rotas Post
 
-router.post('/create', usuarioController.CreateUserController);
+router.post('/create', validaUsuario, usuarioController.CreateUserController);
 
-router.post('/addAdress/:id', usuarioController.AddUserAdressController);
+router.post('/addAdress/:id', authMiddleware, usuarioController.AddUserAdressController);
 
-router.post('/removeAdress/:id', usuarioController.RemoveUserAdressController);
+router.post('/removeAdress/:id', authMiddleware, usuarioController.RemoveUserAdressController);
 
-router.post('/addFavProduct/:id', usuarioController.AddUserFavProductController);
+router.post('/addFavProduct/:id', authMiddleware, usuarioController.AddUserFavProductController);
 
 //rotas put
-router.put('/update/:id', usuarioController.UpdateUserController);
+router.put('/update/:id', authMiddleware, validaUsuario, usuarioController.UpdateUserController);
 
 //rotas delete
-router.delete('/remove/:id', usuarioController.RemoveUserController);
+router.delete('/remove/:id', authMiddleware, usuarioController.RemoveUserController);
 
-router.delete('/removeAdress', usuarioController.RemoveUserAdressController);
+router.delete('/removeAdress', authMiddleware, usuarioController.RemoveUserAdressController);
 
-router.post('/removeProduct/:id', usuarioController.RemoveUserFavProductController);
+router.post('/removeProduct/:id', authMiddleware, usuarioController.RemoveUserFavProductController);
 
 module.exports = router;
 
