@@ -14,7 +14,7 @@ const findProductByIdController = async (req, res) => {
 
 const findAllProductsController = async (req, res) => {
     try {
-        const products = await produtoService.findAllProductsService();
+            const products = await produtoService.findAllProductsService(req.paginacao.limit, req.paginacao.offset);
         return res.status(200).send(products);
     } catch (error) {
         return res.status(500).send({ message: error.message });
@@ -25,7 +25,7 @@ const createProductController = async (req, res) => {
     try {
         const body = {
             ...req.body,
-            userId: req.userId            
+            userId: req.userId
         };
         const product = await produtoService.createProductService(body);
 

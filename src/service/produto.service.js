@@ -8,9 +8,9 @@ const findProductByIdService = (id) => {
     }
 }
 
-const findAllProductsService = () => {
-    try {
-        return Produto.find();
+const findAllProductsService = (limit,offset) => {
+    try {        
+        return Produto.find().limit(limit).skip(offset);
     } catch (error) {
         throw new Error(`Error finding all products: ${error.message}`);
     }

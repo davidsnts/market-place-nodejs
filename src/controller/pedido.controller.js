@@ -2,7 +2,7 @@ const pedidoService = require('../service/pedido.service');
 
 const findAllPedidosController = async (req, res) => {
     try {
-        const pedidos = await pedidoService.findAllPedidosService();
+        const pedidos = await pedidoService.findAllPedidosService(req.paginacao.limit, req.paginacao.offset);
         return res.status(200).json(pedidos);
     } catch (error) {
         return res.status(500).json({ message: 'Erro ao buscar pedidos', error: error.message });
