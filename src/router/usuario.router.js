@@ -4,7 +4,7 @@ const usuarioController = require('../controller/usuario.controller');
 const authMiddleware = require('../middleware/auth.middleware');
 const paginacao = require('../middleware/paginacao.middleware');
 
-const { validaUsuario } = require('../middleware/validacao.middleware');
+const { validaUsuario, validaEndereco } = require('../middleware/validacao.middleware');
 
 //rotas GET
 router.get('/findById/:id', authMiddleware, usuarioController.findUserByIdController);
@@ -15,7 +15,7 @@ router.get('/findAll', paginacao, usuarioController.findAllUsersController);
 
 router.post('/create', validaUsuario, usuarioController.CreateUserController);
 
-router.post('/addAdress/:id', authMiddleware, usuarioController.AddUserAdressController);
+router.post('/addAdress/:id', authMiddleware, validaEndereco, usuarioController.AddUserAdressController);
 
 router.post('/removeAdress/:id', authMiddleware, usuarioController.RemoveUserAdressController);
 

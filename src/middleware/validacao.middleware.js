@@ -43,20 +43,20 @@ const validaProduto = (req, res, next) => {
         if (!produto?.imagem) {
             erros.push('Imagem do produto');
         }
-        
+
         if (!produto?.codigoBarra) {
             erros.push('codigo de barras do produto');
         }
         if (erros.length > 0) {
             if (erros.length === 1) {
-                return res.status(400).json({ message:`O campo ${erros} precisa ser preenchido` });
-            }else{
-                return res.status(400).json({ message:`Os campos ${erros.join(', ')} precisam ser preenchidos` });
+                return res.status(400).json({ message: `O campo ${erros} precisa ser preenchido` });
+            } else {
+                return res.status(400).json({ message: `Os campos ${erros.join(', ')} precisam ser preenchidos` });
             }
-        }else{
+        } else {
             return next();
         }
-        
+
 
 
     } catch (error) {
@@ -67,4 +67,32 @@ const validaProduto = (req, res, next) => {
     }
 
 }
-module.exports = { validaUsuario, validaProduto};
+
+const validaEndereco = (req, res, next) => {
+    const endereco = req.body;
+
+    try {
+        let erros = [];
+        if (!endereco?.rua) {errors.push('Rua do endereço'); }
+        if (!endereco?.numero) { erros.push('Número do endereço'); }
+        if (!endereco?.CEP) { erros.push('CEP do endereço'); }
+
+        if (erros.length > 0) {
+            if (erros.length === 1) {
+                return res.status(400).json({ message: `O campo ${erros} precisa ser preenchido` });
+            } else {
+                return res.status(400).json({ message: `Os campos ${erros.join(', ')} precisam ser preenchidos` });
+            }
+        } else {
+            return next();
+        }
+
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: 'Erro ao validar endereço',
+            error: error.message
+        });
+    }
+}
+module.exports = { validaUsuario, validaProduto, validaEndereco };
