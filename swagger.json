@@ -165,17 +165,19 @@
             }
         },
         "/usuario/create": {
-            "post": {
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
+            "post": {                
                 "summary": "Criar um novo usuário",
                 "description": "Cria um novo usuário com os dados fornecidos",
                 "tags": [
                     "Usuário"
                 ],
+                "parameters": [ {
+                    "in": "body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/components/schemas/Usuario"
+                    },"name": "body"
+                }],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -196,13 +198,8 @@
                                 }
                             }
                         }
-                    },
-                    "400": {
-                        "description": "Dados inválidos"
-                    },
-                    "401": {
-                        "description": " Não autorizado"
-                    },
+                    },        
+                   
                     "500": {
                         "description": "Erro interno do servidor"
                     }
