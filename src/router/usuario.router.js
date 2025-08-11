@@ -9,7 +9,7 @@ const { validaUsuario, validaEndereco } = require('../middleware/validacao.middl
 //rotas GET
 router.get('/findById/:id', authMiddleware, usuarioController.findUserByIdController);
 
-router.get('/findAll', paginacao, usuarioController.findAllUsersController);
+router.get('/findAll',authMiddleware, paginacao, usuarioController.findAllUsersController);
 
 //rotas Post
 
