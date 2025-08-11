@@ -8,6 +8,7 @@ const categoria = require('./src/router/categoria.router'); //arquivo de rota da
 const carrinho = require('./src/router/carrinho.router'); //arquivo de rota do carrinho
 const pedido = require('./src/router/pedido.router'); //arquivo de rota do pedido
 const auth = require('./src/router/auth.router'); //arquivo de rota do usuário
+const docs = require('./src/router/docs.router'); //arquivo de rota da documentação
 
 const PORT = 3001;
 
@@ -21,7 +22,7 @@ app.use("/categoria", categoria); //Chamando rotas categoria
 app.use("/carrinho", carrinho); //Chamando rotas carrinho
 app.use("/pedido", pedido); //Chamando rotas pedido
 app.use("/auth", auth); //Chamando rotas de login
-
+app.use('/docs', docs); //Chamando rotas de documentação
 app.get('/', (req, res) => {
     res.send({
         message: "Bem vindo ao nosso market-place"
