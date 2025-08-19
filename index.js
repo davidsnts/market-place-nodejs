@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const connectToDatabase = require('./src/database/database'); //arquivo de conexão com o banco
 require('dotenv').config(); //variaveis de ambiente
 const app = express();
@@ -11,6 +12,12 @@ const auth = require('./src/router/auth.router'); //arquivo de rota do usuário
 const docs = require('./src/router/docs.router'); //arquivo de rota da documentação
 
 const PORT = 3001;
+
+app.use(cors({
+  origin: "*",          // permite qualquer domínio/porta
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: false    // se precisar usar cookies/sessão, isso deve ser true e o origin não pode ser "*"
+}));
 
 app.use(express.json());
 
