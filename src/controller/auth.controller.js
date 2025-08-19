@@ -7,6 +7,7 @@ const loginController = async (req, res) => {
         return res.status(400).json({ message: "Email e senha são obrigatórios." });
     }
     const user = await authService.loginService(email, senha);
+    const {_id } = user;
     if (!user) {
         return res.status(401).json({ message: "Credenciais inválidas." });
     }
@@ -16,8 +17,12 @@ const loginController = async (req, res) => {
         return res.status(401).json({ message: "Credenciais inválidas." });
     }
     const token = await authService.generateToken(user._id);
+    
+    
+    
+    
     return res.status(200).send({
-        email, token
+        email, token, _id
     });    
 }
 module.exports = { loginController };
